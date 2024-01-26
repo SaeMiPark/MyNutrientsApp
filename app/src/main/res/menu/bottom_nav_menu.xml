@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="@string/title_product"
+        android:id="@+id/navigation_product"
+        android:icon="@drawable/ic_baseline_search_24" />
+    <item
+        android:title="@string/title_ingredient"
+        android:id="@+id/navigation_ingredient"
+        android:icon="@drawable/ic_baseline_add_a_photo_24"/>
+    <item
+        android:title="@string/title_profile"
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_baseline_person_pin_24"/>
+</menu>

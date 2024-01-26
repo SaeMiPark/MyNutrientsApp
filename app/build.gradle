@@ -1,0 +1,75 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+Properties localProperties = new Properties()
+localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.cosoco.myapplication"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String","default_web_client_id",localProperties.getProperty('default_web_client_id')
+        buildConfigField "String","gcm_defaultSenderId",localProperties.getProperty('gcm_defaultSenderId')
+        buildConfigField "String","google_api_key",localProperties.getProperty('google_api_key')
+        buildConfigField "String","google_crash_reporting_api_key",localProperties.getProperty('google_crash_reporting_api_key')
+        buildConfigField "String","google_app_id",localProperties.getProperty('google_app_id')
+        buildConfigField "String","google_storage_bucket",localProperties.getProperty('google_storage_bucket')
+        buildConfigField "String","project_id",localProperties.getProperty('project_id')
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding{
+        enabled true
+    }
+    viewBinding{
+        enabled true
+    }
+
+}
+
+dependencies {
+    def fragment_version = "1.5.5"
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation "androidx.fragment:fragment:$fragment_version"
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
+
+
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0' //파이어베이스 인증 2
+
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+    implementation 'com.google.firebase:firebase-database:20.1.0'
+    implementation 'com.google.firebase:firebase-firestore:24.4.1'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+}
